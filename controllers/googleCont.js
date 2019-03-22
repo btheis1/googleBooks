@@ -2,7 +2,7 @@ const axios = require("axios");
 const db = require("../models");
 
 module.exports = {
-    allBooks: function(req, res) {
+    findAll: function(req, res) {
         const {query: params } = req;
         axios.get("https://www.googleapis.com/books/v1/volumes", { params })
         .then(results => 
@@ -26,6 +26,6 @@ module.exports = {
             )
         )
         .then(books => res.json(books))
-        .catch(err => console.log(err));
+        .catch(err => res.status(422).json(err));
     }
  };
